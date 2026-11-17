@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f3">
+  <meta name="description" content="Личное меню на каждый день — идеи для завтрака, обеда, ужина и десерта.">
+  <title>Меню — что сегодня приготовить?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Меню — на главную"><span class="brand-mark">м</span><span>меню<span class="brand-dot">.</span></span></a>
+    <div class="top-actions"><span class="today" id="today"></span><button class="icon-button" id="favorites-toggle" aria-label="Показать избранное" title="Избранное">♡</button></div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЯ КУЛИНАРНАЯ ПАУЗА</div>
+      <h1>Что сегодня<br><span>приготовим?</span></h1>
+      <p>Хорошая еда начинается с простой идеи.<br class="desktop-break"> Выбери раздел — или доверься случаю.</p>
+    </section>
+
+    <section class="picker" aria-label="Выбор блюда">
+      <div class="picker-copy"><span class="sparkle">✳</span><div><strong>Не знаешь, что выбрать?</strong><small>Пусть случай решит за тебя</small></div></div>
+      <button class="random-button" id="random-button"><span>✳</span> Удиви меня</button>
+    </section>
+
+    <section class="menu-section">
+      <div class="section-heading"><div><span class="eyebrow">НА СЕГОДНЯ</span><h2 id="section-title">Выбери настроение</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div>
+      <div class="filters" id="filters" role="tablist" aria-label="Категории блюд"></div>
+      <div class="dish-grid" id="dish-grid"></div>
+      <p class="empty hidden" id="empty">Ничего не нашлось. Попробуй другой запрос.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Разделы меню"></nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="recipe-dialog" id="recipe-dialog">
+    <button class="dialog-close" id="dialog-close" aria-label="Закрыть">×</button>
+    <div class="dialog-art" id="dialog-art"></div>
+    <div class="dialog-content"><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><div class="recipe-meta" id="dialog-meta"></div><p id="dialog-description"></p><h3>Что понадобится</h3><ul id="dialog-ingredients"></ul><h3>Как приготовить</h3><ol id="dialog-steps"></ol></div>
+  </dialog>
+  <footer>Сделано с аппетитом <span>✳</span></footer>
+</body>
+</html>
