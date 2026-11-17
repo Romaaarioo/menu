@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./override.css">
-  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="./override.css?v=3">
+  <script src="./app.js?v=5" defer></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#" aria-label="Our Home — домашнее меню"><span class="brand-mark">OH</span><span>Our Home</span></a>
-    <div class="top-actions"><span class="today" id="today"></span><button class="icon-button" id="favorites-toggle" aria-label="Показать избранное" title="Избранное">♡</button></div>
+    <div class="top-actions"><span class="today" id="today"></span><button class="tool-button" id="plan-toggle" title="План на неделю">▦ <span>План</span></button><button class="tool-button" id="shopping-toggle" title="Список покупок">☷ <span>Покупки</span></button><button class="tool-button" id="pantry-toggle" title="Продукты дома">⌂ <span>Дома</span></button><button class="icon-button" id="favorites-toggle" aria-label="Показать избранное" title="Избранное">♡</button></div>
   </header>
 
   <main>
@@ -32,7 +32,7 @@
     </section>
 
     <section class="menu-section">
-      <div class="section-heading"><div><span class="eyebrow" id="section-label">МЕНЮ</span><h2 id="section-title">Выбери настроение</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div>
+      <div class="section-heading"><div><span class="eyebrow" id="section-label">МЕНЮ</span><h2 id="section-title">Выбери настроение</h2></div><div class="list-tools"><button class="pantry-filter" id="pantry-filter">✓ Можно приготовить</button><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div></div>
       <div class="dish-grid" id="dish-grid"></div>
       <p class="empty hidden" id="empty">Ничего не нашлось. Попробуй другой запрос.</p>
     </section>
@@ -44,7 +44,7 @@
   <dialog class="recipe-dialog" id="recipe-dialog">
     <button class="dialog-close" id="dialog-close" aria-label="Закрыть">×</button>
     <div class="dialog-art" id="dialog-art"></div>
-    <div class="dialog-content"><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><div class="recipe-meta" id="dialog-meta"></div><p id="dialog-description"></p><h3>Что понадобится</h3><ul id="dialog-ingredients"></ul><h3>Как приготовить</h3><ol id="dialog-steps"></ol><div class="dialog-actions"><button class="secondary-button" id="edit-recipe">Редактировать</button><button class="delete-button" id="delete-recipe">Удалить блюдо</button></div></div>
+    <div class="dialog-content"><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><div class="recipe-meta" id="dialog-meta"></div><p id="dialog-description"></p><div class="rating-row"><span>Ваша оценка</span><div id="recipe-rating" class="recipe-rating" aria-label="Оценить рецепт"></div><button class="cooked-button" id="mark-cooked">Приготовили сегодня</button></div><h3>Что понадобится</h3><ul id="dialog-ingredients"></ul><h3>Как приготовить</h3><ol id="dialog-steps"></ol><div class="dialog-actions"><button class="secondary-button" id="plan-recipe-action">＋ В план</button><button class="secondary-button" id="edit-recipe">Редактировать</button><button class="delete-button" id="delete-recipe">Удалить блюдо</button></div></div>
   </dialog>
   <dialog class="form-dialog" id="form-dialog">
     <form id="recipe-form">
@@ -59,6 +59,24 @@
       <label>Шаги приготовления <small>каждый с новой строки</small><textarea id="recipe-steps" rows="4" placeholder="Смешай ингредиенты.&#10;Обжарь до готовности."></textarea></label>
       <div class="form-actions"><button class="secondary-button" id="cancel-form" type="button">Отмена</button><button class="random-button" type="submit">Сохранить блюдо</button></div>
     </form>
+  </dialog>
+  <dialog class="form-dialog utility-dialog" id="planner-dialog">
+    <button class="dialog-close" data-close="planner-dialog" aria-label="Закрыть">×</button>
+    <span class="eyebrow">ВАШЕ РАСПИСАНИЕ</span><h2>План на неделю</h2>
+    <form id="plan-form"><div class="form-row"><label>День<input id="plan-date" type="date" required></label><label>Приём пищи<select id="plan-slot"><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option></select></label></div><label>Блюдо<select id="plan-recipe" required></select></label><button class="random-button" type="submit">Добавить в план</button></form>
+    <div class="week-controls"><button class="secondary-button" id="week-prev">← Предыдущая</button><strong id="week-label"></strong><button class="secondary-button" id="week-next">Следующая →</button></div><div id="week-list" class="week-list"></div>
+  </dialog>
+  <dialog class="form-dialog utility-dialog" id="shopping-dialog">
+    <button class="dialog-close" data-close="shopping-dialog" aria-label="Закрыть">×</button>
+    <span class="eyebrow">ВСЁ ДЛЯ ВАШИХ БЛЮД</span><h2>Список покупок</h2>
+    <div class="shopping-actions"><button class="secondary-button" id="generate-shopping">Собрать из плана</button><button class="secondary-button" id="clear-shopping">Очистить список</button></div>
+    <form id="shopping-form" class="inline-form"><input id="shopping-input" placeholder="Добавить продукт…" required><button class="random-button" type="submit">Добавить</button></form><div id="shopping-list" class="shopping-list"></div>
+  </dialog>
+  <dialog class="form-dialog utility-dialog" id="pantry-dialog">
+    <button class="dialog-close" data-close="pantry-dialog" aria-label="Закрыть">×</button>
+    <span class="eyebrow">ЧТО УЖЕ ЕСТЬ НА КУХНЕ</span><h2>Продукты дома</h2>
+    <p class="utility-hint">Перечислите продукты через запятую или с новой строки. Приложение сравнит их с ингредиентами рецептов, стараясь учитывать разные окончания слов. Затем нажмите «Можно приготовить» над списком блюд.</p>
+    <form id="pantry-form"><label>Ваши продукты<textarea id="pantry-input" rows="6" placeholder="картофель&#10;яйца&#10;молоко&#10;курица"></textarea></label><button class="random-button" type="submit">Сохранить продукты</button></form>
   </dialog>
   <footer>Сделано с аппетитом <span>✳</span></footer>
 </body>
