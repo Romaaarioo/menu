@@ -57,4 +57,7 @@
 .recipe-rating button.rated{color:#c7923d}
 .cooked-button{border:0;background:#e5ede4;color:var(--green);border-radius:7px;padding:8px 10px;font-size:10px;font-weight:700}
 .dialog-actions{flex-wrap:wrap}
+.subsection-filter{display:flex;gap:8px;margin:-5px 0 20px}
+.subsection-button{border:1px solid var(--line);background:transparent;color:#747c72;border-radius:100px;padding:8px 14px;font-size:11px}
+.subsection-button.active{background:#e9eee8;border-color:#d4e0d4;color:var(--green);font-weight:700}
 @media(max-width:700px){.picker-actions{gap:6px}.add-button{padding:10px 9px;font-size:9px}.form-dialog{padding:24px 19px}.form-row{gap:9px}.form-actions button{font-size:10px}.nav-item:first-child{margin-right:0}.tool-button{padding:8px 9px;font-size:16px}.tool-button span{display:none}.top-actions{gap:6px}.list-tools{width:100%;flex-wrap:wrap}.search{flex:1;min-width:155px}.pantry-filter{padding:10px;font-size:10px}.week-day{grid-template-columns:72px 1fr;padding:9px}.week-controls button{padding:8px 6px;font-size:9px}.week-controls strong{font-size:10px}.rating-row{gap:7px}.cooked-button{margin-left:auto}}

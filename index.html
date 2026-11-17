@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./override.css?v=3">
-  <script src="./app.js?v=5" defer></script>
+  <link rel="stylesheet" href="./override.css?v=4">
+  <script src="./app.js?v=7" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -33,6 +33,7 @@
 
     <section class="menu-section">
       <div class="section-heading"><div><span class="eyebrow" id="section-label">МЕНЮ</span><h2 id="section-title">Выбери настроение</h2></div><div class="list-tools"><button class="pantry-filter" id="pantry-filter">✓ Можно приготовить</button><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div></div>
+      <div class="subsection-filter hidden" id="lunch-filter" aria-label="Подраздел обеда"><button class="subsection-button active" data-lunch-filter="all">Все блюда</button><button class="subsection-button" data-lunch-filter="main">Основное</button><button class="subsection-button" data-lunch-filter="soups">Супы</button></div>
       <div class="dish-grid" id="dish-grid"></div>
       <p class="empty hidden" id="empty">Ничего не нашлось. Попробуй другой запрос.</p>
     </section>
@@ -52,7 +53,7 @@
       <span class="eyebrow" id="form-eyebrow">НОВОЕ БЛЮДО</span><h2 id="form-title">Добавить блюдо</h2>
       <input type="hidden" id="recipe-id">
       <label>Название<input id="recipe-name" required maxlength="70" placeholder="Например, овощной киш"></label>
-      <div class="form-row"><label>Раздел<select id="recipe-category" required><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option></select></label><label>Время, минут<input id="recipe-time" type="number" min="1" max="999" value="20" required></label></div>
+      <div class="form-row"><label>Раздел<select id="recipe-category" required><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option><option value="salads">Салаты</option></select></label><label>Время, минут<input id="recipe-time" type="number" min="1" max="999" value="20" required></label></div>
       <div class="form-row"><label>Эмодзи<input id="recipe-emoji" maxlength="4" value="🍽️"></label><label>Короткая подпись<input id="recipe-tag" maxlength="45" placeholder="Быстро и вкусно"></label></div>
       <label>Описание<textarea id="recipe-description" rows="2" placeholder="Что это за блюдо?"></textarea></label>
       <label>Ингредиенты <small>каждый с новой строки</small><textarea id="recipe-ingredients" rows="4" placeholder="Яйца — 2 шт.&#10;Молоко — 100 мл"></textarea></label>
@@ -63,7 +64,7 @@
   <dialog class="form-dialog utility-dialog" id="planner-dialog">
     <button class="dialog-close" data-close="planner-dialog" aria-label="Закрыть">×</button>
     <span class="eyebrow">ВАШЕ РАСПИСАНИЕ</span><h2>План на неделю</h2>
-    <form id="plan-form"><div class="form-row"><label>День<input id="plan-date" type="date" required></label><label>Приём пищи<select id="plan-slot"><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option></select></label></div><label>Блюдо<select id="plan-recipe" required></select></label><button class="random-button" type="submit">Добавить в план</button></form>
+    <form id="plan-form"><div class="form-row"><label>День<input id="plan-date" type="date" required></label><label>Приём пищи<select id="plan-slot"><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option><option value="salads">Салаты</option></select></label></div><label>Блюдо<select id="plan-recipe" required></select></label><button class="random-button" type="submit">Добавить в план</button></form>
     <div class="week-controls"><button class="secondary-button" id="week-prev">← Предыдущая</button><strong id="week-label"></strong><button class="secondary-button" id="week-next">Следующая →</button></div><div id="week-list" class="week-list"></div>
   </dialog>
   <dialog class="form-dialog utility-dialog" id="shopping-dialog">
