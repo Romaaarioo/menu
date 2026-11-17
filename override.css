@@ -1,0 +1,20 @@
+.picker-actions{display:flex;align-items:center;gap:10px}
+.add-button,.secondary-button,.delete-button{border:1px solid #dce3d9;background:transparent;color:var(--green);border-radius:9px;padding:11px 14px;font-size:11px;font-weight:700;white-space:nowrap}
+.add-button:hover,.secondary-button:hover{background:#f7faf6}
+.add-button span{font-size:16px;vertical-align:-1px;margin-right:4px}
+.form-dialog{position:fixed;inset:0;border:0;border-radius:16px;padding:30px;max-width:540px;width:calc(100% - 28px);max-height:90vh;overflow:auto;box-shadow:0 24px 80px #1115;color:var(--ink)}
+.form-dialog::backdrop{background:#17211bb0;backdrop-filter:blur(3px)}
+.form-dialog h2{font:700 25px Manrope,sans-serif;margin:8px 0 22px}
+.form-dialog form>label,.form-row label{display:flex;flex-direction:column;gap:7px;margin:14px 0;font-size:12px;font-weight:600;color:#555e54}
+.form-dialog input,.form-dialog select,.form-dialog textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 11px;background:white;color:var(--ink);font:400 13px "DM Sans",sans-serif;outline-color:#8aa391}
+.form-dialog textarea{resize:vertical;line-height:1.5}
+.form-dialog label small{font-weight:400;color:var(--muted)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-actions,.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}
+.delete-button{border-color:#ecd8d4;color:#ad514a}
+.delete-button:hover{background:#fcf2f0}
+.dialog-actions{justify-content:flex-start;border-top:1px solid var(--line);padding-top:18px}
+.dialog-actions button{font-size:11px}
+.nav-item:first-child{margin-right:auto}
+.nav-item[aria-current="page"]{color:var(--green);background:#e9eee8}
+@media(max-width:700px){.picker-actions{gap:6px}.add-button{padding:10px 9px;font-size:9px}.form-dialog{padding:24px 19px}.form-row{gap:9px}.form-actions button{font-size:10px}.nav-item:first-child{margin-right:0}}

@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./override.css">
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -21,18 +22,17 @@
   <main>
     <section class="intro">
       <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЯ КУЛИНАРНАЯ ПАУЗА</div>
-      <h1>Что сегодня<br><span>приготовим?</span></h1>
-      <p>Хорошая еда начинается с простой идеи.<br class="desktop-break"> Выбери раздел — или доверься случаю.</p>
+      <h1 id="intro-title">Что сегодня<br><span>приготовим?</span></h1>
+      <p id="intro-description">Хорошая еда начинается с простой идеи.<br class="desktop-break"> Выбери раздел — или доверься случаю.</p>
     </section>
 
     <section class="picker" aria-label="Выбор блюда">
       <div class="picker-copy"><span class="sparkle">✳</span><div><strong>Не знаешь, что выбрать?</strong><small>Пусть случай решит за тебя</small></div></div>
-      <button class="random-button" id="random-button"><span>✳</span> Удиви меня</button>
+      <div class="picker-actions"><button class="add-button" id="add-button"><span>＋</span> Добавить блюдо</button><button class="random-button" id="random-button"><span>✳</span> Удиви меня</button></div>
     </section>
 
     <section class="menu-section">
-      <div class="section-heading"><div><span class="eyebrow">НА СЕГОДНЯ</span><h2 id="section-title">Выбери настроение</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div>
-      <div class="filters" id="filters" role="tablist" aria-label="Категории блюд"></div>
+      <div class="section-heading"><div><span class="eyebrow" id="section-label">МЕНЮ</span><h2 id="section-title">Выбери настроение</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Найти блюдо…" aria-label="Найти блюдо"></label></div>
       <div class="dish-grid" id="dish-grid"></div>
       <p class="empty hidden" id="empty">Ничего не нашлось. Попробуй другой запрос.</p>
     </section>
@@ -44,7 +44,21 @@
   <dialog class="recipe-dialog" id="recipe-dialog">
     <button class="dialog-close" id="dialog-close" aria-label="Закрыть">×</button>
     <div class="dialog-art" id="dialog-art"></div>
-    <div class="dialog-content"><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><div class="recipe-meta" id="dialog-meta"></div><p id="dialog-description"></p><h3>Что понадобится</h3><ul id="dialog-ingredients"></ul><h3>Как приготовить</h3><ol id="dialog-steps"></ol></div>
+    <div class="dialog-content"><span class="eyebrow" id="dialog-category"></span><h2 id="dialog-title"></h2><div class="recipe-meta" id="dialog-meta"></div><p id="dialog-description"></p><h3>Что понадобится</h3><ul id="dialog-ingredients"></ul><h3>Как приготовить</h3><ol id="dialog-steps"></ol><div class="dialog-actions"><button class="secondary-button" id="edit-recipe">Редактировать</button><button class="delete-button" id="delete-recipe">Удалить блюдо</button></div></div>
+  </dialog>
+  <dialog class="form-dialog" id="form-dialog">
+    <form id="recipe-form">
+      <button class="dialog-close" id="form-close" type="button" aria-label="Закрыть">×</button>
+      <span class="eyebrow" id="form-eyebrow">НОВОЕ БЛЮДО</span><h2 id="form-title">Добавить блюдо</h2>
+      <input type="hidden" id="recipe-id">
+      <label>Название<input id="recipe-name" required maxlength="70" placeholder="Например, овощной киш"></label>
+      <div class="form-row"><label>Раздел<select id="recipe-category" required><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="dessert">Сладкое</option></select></label><label>Время, минут<input id="recipe-time" type="number" min="1" max="999" value="20" required></label></div>
+      <div class="form-row"><label>Эмодзи<input id="recipe-emoji" maxlength="4" value="🍽️"></label><label>Короткая подпись<input id="recipe-tag" maxlength="45" placeholder="Быстро и вкусно"></label></div>
+      <label>Описание<textarea id="recipe-description" rows="2" placeholder="Что это за блюдо?"></textarea></label>
+      <label>Ингредиенты <small>каждый с новой строки</small><textarea id="recipe-ingredients" rows="4" placeholder="Яйца — 2 шт.&#10;Молоко — 100 мл"></textarea></label>
+      <label>Шаги приготовления <small>каждый с новой строки</small><textarea id="recipe-steps" rows="4" placeholder="Смешай ингредиенты.&#10;Обжарь до готовности."></textarea></label>
+      <div class="form-actions"><button class="secondary-button" id="cancel-form" type="button">Отмена</button><button class="random-button" type="submit">Сохранить блюдо</button></div>
+    </form>
   </dialog>
   <footer>Сделано с аппетитом <span>✳</span></footer>
 </body>
